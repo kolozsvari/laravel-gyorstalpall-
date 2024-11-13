@@ -4,8 +4,9 @@
 
 @error('name')
 <div class="alert alert-warning">{{$message}}</div>
+@enderror
 
-<form action="{{route('categories.updte', $category->id)}}" method="post">
+<form action="{{route('categories.update', $category->id)}}" method="post">
     @csrf
     @method('PUT')
     <fieldset>

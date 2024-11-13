@@ -80,8 +80,17 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(
+            ['name' => 'required|min:3|max:255',],
+            ['name.min' =>  'A kategória neve legalább 3 karakter hosszú legyen.',]
+        );
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect()->route('categories.index')->with('success', 'A kategória sikeresen módosítva!');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -89,8 +98,11 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( string $id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+
+        return redirect()->route('categories.index')->with('success', 'Kategória sikeresen törölve.');
     }
 }

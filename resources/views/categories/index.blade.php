@@ -6,7 +6,7 @@
 @if (session('success'))
 <div class="alert alert-success">
     {{session('success')}}
-</div> /.alert.alert-success
+</div>
 @endif
 
 <ul>
@@ -18,7 +18,7 @@
         <form action="{{route('categories.destroy', $category->id)}}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class="danger" >Törlés</button>
+            <button type="submit" class="danger" onclick="return confirm('Tutira töröljük?')" >Törlés</button>
         </form>
     </li>
     @endforeach

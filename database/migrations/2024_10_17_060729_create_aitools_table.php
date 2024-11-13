@@ -16,7 +16,7 @@ class CreateAitoolsTable extends Migration
         Schema::create('aitools', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id');
-            $table->foreignKey('category_is')->on("categories");
+            $table->foreign('category_id')->references('id')->on("categories");
             $table->string('name');
             $table->text('description');
             $table->string('link');
