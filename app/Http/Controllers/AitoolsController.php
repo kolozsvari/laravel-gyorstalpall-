@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AitoolsController extends Controller
@@ -23,7 +24,9 @@ class AitoolsController extends Controller
      */
     public function create()
     {
-        return view('aitools.create');
+        $categories = Category::all();
+        return view('aitools.create', compact('categories'));
+
     }
 
     /**

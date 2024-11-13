@@ -15,6 +15,15 @@
     <label for="name">Az AI eszköz neve</label>
     <input type="text" name="name" id="name">
     </fieldset>
+
+    <label for="category">Kategória</label>
+    <select name="category_id" id="category_id">
+        @foreach ($categories as $category)
+        <option value="{{ $category->id }}">{{ $category->name}}</option>
+        @endforeach
+    </select>
+    </fieldset>
+
     <fieldset>
     <label for="description">Leírás</label>
     <textarea name="description" id="description"></textarea>
