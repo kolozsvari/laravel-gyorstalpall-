@@ -16,6 +16,7 @@
         <img src="{{asset('logo.png')}}" alt="logo">
         <nav>
             <ul>
+                <li><a href="{{route('aitools.index')}}">AI eszközök</a></li>
                 <li><a href="{{route('categories.index')}}">Kategóriák</a></li>
                 <li><a href="{{route('categories.create')}}"> Új Kategóriák</a></li>
             </ul>
