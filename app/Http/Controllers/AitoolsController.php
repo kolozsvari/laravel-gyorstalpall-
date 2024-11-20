@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aitool;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class AitoolsController extends Controller
      */
     public function index()
     {
-        //
+        $aitools = Aitool::all();
+        return view('aitools.index', compact('aitools'));
     }
 
     /**
@@ -37,7 +39,22 @@ class AitoolsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $hasFreePlan = $request->has('hasFreeplan');
+        if ($hasFreePlan){
+            $request->merge(['hasFreePlan' => true]);
+        }
+
+
+        $request->validate([
+            'name' => 'required|string|max:255|min:3',
+            'category_id' => 'required|exists:categories,id',
+            'description' => 'required|string|min:20',
+            'link' => 'required|url',
+            'hasFreePlan' => 'boolean',
+            'price' => 'nullable|numeric',
+        ]);
+        Aitool::create($request->all());
+        return redirect()->route('aitools.index')->with('success', 'Az AI eszköz sikeresen hozzáadva' );
     }
 
     /**

@@ -3,13 +3,20 @@
 
 <h1>Új AI Eszköz</h1>
 
+@if($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
-@error('name')
-<div class="alert alert-warning">{{$message}}</div>
-@enderror
 
 
-<form action="{{route('categories.store')}}" method="post">
+
+<form action="{{route('aitools.store')}}" method="post">
     @csrf
     <fieldset>
     <label for="name">Az AI eszköz neve</label>
@@ -25,18 +32,20 @@
     </fieldset>
 
     <fieldset>
-    <label for="description">Leírás</label>
-    <textarea name="description" id="description"></textarea>
+        <label for="description">Leírás</label>
+        <textarea name="description" id="description"></textarea>
     </fieldset>
     <fieldset>
-    <label for="link">Link</label>
-    <input type="text" name="link" id="link">
+        <label for="link">Link</label>
+        <input type="text" name="link" id="link">
     </fieldset>
-    <label for="hasFreePlan">Van ingyenes változat?</label>
-    <input type="hasFreePlan" name="hasFreePlan" id="hasFreePlan">
+    <fieldset>
+        <label for="hasFreePlan">Van ingyenes változat?</label>
+        <input type="checkbox" name="hasFreePlan" id="hasFreePlan">
     </fieldset>
-    <label for="price">Ár (havonta Ft-ban)</label>
-    <input type="number" name="price" id="price">
+    <fieldset>
+        <label for="price">Ár (havonta Ft-ban)</label>
+        <input type="number" name="price" id="price">
     </fieldset>
     <button type="submit">Ment</button>
 </form>

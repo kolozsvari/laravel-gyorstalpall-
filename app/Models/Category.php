@@ -11,6 +11,6 @@ class Category extends Model
 
     public function aitools()
     {
-        return $this->hasMany(Aitools::class);
+        return $this->hasMany(Aitool::class);
     }
 }
