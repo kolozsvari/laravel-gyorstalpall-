@@ -39,7 +39,7 @@ class AitoolsController extends Controller
      */
     public function store(Request $request)
     {
-        $hasFreePlan = $request->has('hasFreeplan');
+        $hasFreePlan = $request->has('hasFreePlan');
         if ($hasFreePlan){
             $request->merge(['hasFreePlan' => true]);
         }
