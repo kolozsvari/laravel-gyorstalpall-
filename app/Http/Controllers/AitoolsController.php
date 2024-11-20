@@ -65,7 +65,10 @@ class AitoolsController extends Controller
      */
     public function show($id)
     {
-        //
+        {
+            $aitool = Aitool::find($id);
+            return view('aitools.show', compact('aitool'));
+        }
     }
 
     /**
@@ -76,7 +79,9 @@ class AitoolsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $aitool = Aitool::find($id);
+        $categories = Category::all();
+        return view('aitools.edit', compact('aitool', 'categories'));
     }
 
     /**
@@ -99,6 +104,11 @@ class AitoolsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+            $aitool = Aitool::find($id);
+            $aitool->delete();
+    
+            return redirect()->route('aitools.index')->with('success', 'Kategória sikeresen törölve.');
+        
     }
 }
