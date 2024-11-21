@@ -104,11 +104,11 @@ class AitoolsController extends Controller
      */
     public function destroy($id)
     {
-        
-            $aitool = Aitool::find($id);
-            $aitool->delete();
-    
-            return redirect()->route('aitools.index')->with('success', 'Kategória sikeresen törölve.');
-        
+       
+        $aitool = Aitool::find($id);
+        $aitool->delete();
+
+        return redirect()->route('aitools.index')->with('success', 'Kategória sikeresen törölve!');
     }
+    
 }
