@@ -93,7 +93,23 @@ class AitoolsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $hasFreePlan = $request->has('hasFreePlan');
+        if ($hasFreePlan){
+            $request->merge(['hasFreePlan' => true]);
+        }
+
+
+        $request->validate([
+            'name' => 'required|string|max:255|min:3',
+            'category_id' => 'required|exists:categories,id',
+            'description' => 'required|string|min:20',
+            'link' => 'required|url',
+            'hasFreePlan' => 'boolean',
+            'price' => 'nullable|numeric',
+        ]);
+        $aitool=Aitool::find($id);
+        $aitool->update($request->all());
+        return redirect()->route('aitools.index')->with('success', 'Az AI eszköz sikeresen módosítva');
     }
 
     /**
